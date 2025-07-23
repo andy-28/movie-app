@@ -1,6 +1,6 @@
 # 🎬 Movie Watchlist App
 
-一個使用 React + TypeScript + Tailwind CSS 打造的電影搜尋平台，整合 TMDB API，支援搜尋、無限滾動、排序、收藏清單與抽電影功能。具備良好的 DX 設計與易於擴充的架構。
+一個使用 React + TypeScript + Tailwind CSS 打造的電影搜尋平台，整合 TMDB API，支援搜尋、無限滾動、排序、收藏清單與抽電影功能
 
 ## ✨ 功能 Features
 
