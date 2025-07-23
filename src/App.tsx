@@ -85,40 +85,42 @@ function App() {
   }, [page]);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* 導覽列 */}
-      <nav className="bg-white shadow-sm p-4 flex justify-between items-center container mx-auto mb-6">
+    <div className="min-h-screen">
+      <nav className="shadow-sm p-4 flex justify-between items-center container mx-auto mb-6">
         <h1 className="text-xl font-bold text-blue-600">電影搜尋</h1>
+        <div className="flex items-center border px-3 py-1 shadow-sm w-full max-w-sm">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="請輸入電影名稱"
+            className="flex-grow outline-none px-2 text-sm text-white-700"
+          />
+          <button onClick={handleSearch} className="p-1 hover:opacity-80">
+            <img
+              src="https://i2.bahamut.com.tw/anime/search-icon.svg"
+              alt="搜尋"
+              className="w-5 h-5"
+            />
+          </button>
+        </div>
         <div className="flex items-center gap-4">
-          <Link to="/watchlist" className="text-blue-500 hover:underline text-sm">
+          <Link to="/watchlist" className="text-blue-500 hover:underline text-md">
             待看清單
           </Link>
-          <Link to="/watch-lottery" className="text-green-500 hover:underline text-sm">
+          <Link to="/watch-lottery" className="text-blue-500 hover:underline text-md">
             抽電影
           </Link>
         </div>
       </nav>
-
-      {/* 主區塊 container */}
       <div className="container mx-auto px-4">
-        {/* 搜尋區塊 */}
+
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
           <div className="flex w-full md:w-2/3 gap-2">
-            <input
-              className="border px-4 py-2 rounded w-full shadow-sm"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="輸入電影名稱"
-            />
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded shadow"
-              onClick={handleSearch}
-            >
-              搜尋
-            </button>
+
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">排序：</label>
+            <label className="text-sm font-medium">排序：</label>
             <select
               value={sortOption}
               onChange={(e) =>
@@ -133,11 +135,11 @@ function App() {
           </div>
         </div>
 
-        {/* 錯誤與載入 */}
+
         {error && <div className="text-red-500 mb-4">{error}</div>}
         {isLoading && <div className="text-gray-500 mb-4">載入中...</div>}
 
-        {/* 電影列表 */}
+
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {results.map((movie) => (
             <li
@@ -171,7 +173,7 @@ function App() {
           ))}
         </ul>
 
-        {/* 無限載入觸發器 */}
+
         {hasMore && <div ref={ref} className="h-10" />}
       </div>
     </div>

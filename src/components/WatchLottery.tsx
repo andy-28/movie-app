@@ -27,7 +27,7 @@ function WatchLottery() {
 
     return (
         <div className="p-6 max-w-2xl mx-auto text-center">
-            <h1 className="text-2xl font-bold mb-6">🎰 電影轉盤抽籤</h1>
+            <h1 className="text-2xl font-bold mb-6">電影轉盤抽籤</h1>
 
             <button
                 onClick={handleLottery}

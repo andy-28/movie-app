@@ -34,12 +34,12 @@ function Watchlist() {
     };
 
     return (
-        <div className="bg-gray-50 p-4 max-w-5xl mx-auto text-gray-800">
+        <div className="p-4 max-w-5xl mx-auto text-white-800">
             <h1 className="text-2xl font-bold mb-6">我的待看清單</h1>
 
             {movies.length > 0 && (
                 <div className="flex items-center gap-2 mb-4">
-                    <label className="text-sm font-medium text-gray-700">排序：</label>
+                    <label className="text-sm font-medium text-white-700">排序：</label>
                     <select
                         value={sortOption}
                         onChange={(e) => setSortOption(e.target.value as typeof sortOption)}
