@@ -15,18 +15,32 @@ function MovieDetail() {
     if (!movie) return <div>載入中...</div>;
 
     return (
-        <div className="p-4 max-w-3xl mx-auto">
-            <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
-            <p className="text-gray-600">{movie.release_date}</p>
-            <p>{movie.overview}</p>
-            {movie.poster_path && (
-                <img
-                    className="mt-4"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                />
-            )}
+        <div className="min-h-screen bg-gray-50 text-gray-800">
+            <div className="container mx-auto px-4 py-8">
+                <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6">
+                    {/* 標題 */}
+                    <h1 className="text-3xl font-bold mb-2 text-center">{movie.title}</h1>
+                    <p className="text-center text-sm text-gray-500 mb-4">{movie.release_date}</p>
+
+                    {/* 圖片 */}
+                    {movie.poster_path && (
+                        <div className="flex justify-center mb-6">
+                            <img
+                                className="rounded-lg w-full max-w-md shadow-md"
+                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                alt={movie.title}
+                            />
+                        </div>
+                    )}
+
+                    {/* 介紹 */}
+                    <div className="prose max-w-none text-justify text-gray-700 leading-relaxed">
+                        <p>{movie.overview}</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
     );
 }
 

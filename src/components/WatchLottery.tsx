@@ -48,7 +48,6 @@ function WatchLottery() {
                             transition={{ duration: 0.4, repeat: Infinity, repeatType: 'loop' }}
                             className="text-lg text-gray-500"
                         >
-                            🎬 抽籤中...
                         </motion.div>
                     )}
                 </AnimatePresence>

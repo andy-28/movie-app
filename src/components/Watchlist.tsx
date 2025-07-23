@@ -34,7 +34,7 @@ function Watchlist() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-4 max-w-5xl mx-auto text-gray-800">
+        <div className="bg-gray-50 p-4 max-w-5xl mx-auto text-gray-800">
             <h1 className="text-2xl font-bold mb-6">我的待看清單</h1>
 
             {movies.length > 0 && (
