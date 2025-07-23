@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getMovieDetail } from '../api/tmdb'; // 確保你有這個 API function
+import { getMovieDetail } from '../api/tmdb';
 
 function MovieDetail() {
     const { id } = useParams();
@@ -15,12 +15,12 @@ function MovieDetail() {
     if (!movie) return <div>載入中...</div>;
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-800">
+        <div className="min-h-screen text-white-800">
             <div className="container mx-auto px-4 py-8">
-                <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6">
+                <div className="max-w-3xl mx-auto rounded-lg shadow-md p-6">
 
                     <h1 className="text-3xl font-bold mb-2 text-center">{movie.title}</h1>
-                    <p className="text-center text-sm text-gray-500 mb-4">{movie.release_date}</p>
+                    <p className="text-center text-sm text-white-500 mb-4">{movie.release_date}</p>
 
                     {movie.poster_path && (
                         <div className="flex justify-center mb-6">
@@ -32,7 +32,7 @@ function MovieDetail() {
                         </div>
                     )}
 
-                    <div className="prose max-w-none text-justify text-gray-700 leading-relaxed">
+                    <div className="prose max-w-none text-justify text-white-700 leading-relaxed">
                         <p>{movie.overview}</p>
                     </div>
                 </div>

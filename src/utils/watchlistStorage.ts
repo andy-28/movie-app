@@ -1,5 +1,3 @@
-// src/utils/watchlistStorage.ts
-
 const STORAGE_KEY = 'watchlist';
 
 export function getWatchlist(): any[] {

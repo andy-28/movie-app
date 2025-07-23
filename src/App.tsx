@@ -18,8 +18,8 @@ function App() {
 
   const fetchMovies = async (reset = false) => {
     try {
-      setError('');               // 清空錯誤訊息
-      setIsLoading(true);         // 設定載入中（可搭配 UI 顯示 spinner）
+      setError('');
+      setIsLoading(true);
 
       const currentPage = reset ? 1 : page;
       const data = await searchMovies(query, currentPage);

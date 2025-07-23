@@ -31,7 +31,7 @@ function WatchLottery() {
 
             <button
                 onClick={handleLottery}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded text-lg disabled:opacity-50"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded text-lg disabled:opacity-50"
                 disabled={rolling || movies.length === 0}
             >
                 {rolling ? '轉動中...' : '轉吧轉吧！'}
@@ -46,7 +46,7 @@ function WatchLottery() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 30 }}
                             transition={{ duration: 0.4, repeat: Infinity, repeatType: 'loop' }}
-                            className="text-lg text-gray-500"
+                            className="text-lg text-black-500"
                         >
                         </motion.div>
                     )}
@@ -59,9 +59,9 @@ function WatchLottery() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="border rounded p-4 bg-white shadow-md"
+                        className="border rounded p-4 bg-white shadow-md mt-10"
                     >
-                        <h2 className="text-xl font-semibold mb-1">{selected.title}</h2>
+                        <h2 className="text-xl font-semibold mb-1 text-gray-600">{selected.title}</h2>
                         <p className="text-gray-600 mb-2">{selected.release_date}</p>
                         {selected.poster_path && (
                             <img
@@ -75,7 +75,7 @@ function WatchLottery() {
             </div>
 
             {movies.length === 0 && !rolling && (
-                <p className="text-gray-500 mt-6">尚未加入任何電影到待看清單</p>
+                <p className="text-white-500 mt-6">尚未加入任何電影到待看清單</p>
             )}
         </div>
     );
