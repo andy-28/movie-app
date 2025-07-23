@@ -109,7 +109,7 @@ function App() {
             待看清單
           </Link>
           <Link to="/watch-lottery" className="text-blue-500 hover:underline text-md">
-            抽電影
+            抽籤
           </Link>
         </div>
       </nav>
