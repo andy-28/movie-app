@@ -85,83 +85,98 @@ function App() {
   }, [page]);
 
   return (
-    <div className="p-4 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">電影搜尋</h1>
-      <h1 className="text-3xl font-bold text-red-500">Tailwind 測試成功</h1>
+    <div className="min-h-screen bg-gray-50 text-gray-800">
+      {/* 導覽列 */}
+      <nav className="bg-white shadow-sm p-4 flex justify-between items-center container mx-auto mb-6">
+        <h1 className="text-xl font-bold text-blue-600">電影搜尋</h1>
+        <div className="flex items-center gap-4">
+          <Link to="/watchlist" className="text-blue-500 hover:underline text-sm">
+            待看清單
+          </Link>
+          <Link to="/watch-lottery" className="text-green-500 hover:underline text-sm">
+            抽電影
+          </Link>
+        </div>
+      </nav>
 
-      <Link to="/watchlist" className="text-blue-500 underline block mb-4">
-        查看我的待看清單 →
-      </Link>
-      <Link to="/watch-lottery" className="text-green-500 underline block mb-4">
-        抽電影 🎲 →
-      </Link>
-      {/* 排序功能 */}
-      <div className="flex items-center gap-4 mb-4">
-        <label className="text-sm font-medium text-gray-700">排序方式：</label>
-        <select
-          value={sortOption}
-          onChange={(e) =>
-            setSortOption(e.target.value as 'date' | 'title' | 'rating')
-          }
-          className="border px-2 py-1 rounded text-sm"
-        >
-          <option value="date">依上映日</option>
-          <option value="title">依名稱</option>
-          <option value="rating">依評分</option>
-        </select>
-      </div>
-
-      {/* 搜尋欄 */}
-      <div className="flex gap-2 mb-4">
-        <input
-          className="border px-3 py-2 w-full"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="輸入電影名稱"
-        />
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={handleSearch}
-        >
-          搜尋
-        </button>
-      </div>
-
-      {/* 錯誤與載入提示 */}
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-      {isLoading && <div className="text-gray-500 mb-4">載入中...</div>}
-
-      {/* 電影清單 */}
-      <ul className="grid grid-cols-2 gap-4">
-        {results.map((movie) => (
-          <li key={movie.id} className="border rounded p-2 hover:shadow-lg">
-            <Link to={`/movie/${movie.id}`}>
-              <h2 className="font-bold">{movie.title}</h2>
-              <p className="text-sm text-gray-600">{movie.release_date}</p>
-              {movie.poster_path && (
-                <img
-                  className="mt-2"
-                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              )}
-            </Link>
-
+      {/* 主區塊 container */}
+      <div className="container mx-auto px-4">
+        {/* 搜尋區塊 */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+          <div className="flex w-full md:w-2/3 gap-2">
+            <input
+              className="border px-4 py-2 rounded w-full shadow-sm"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="輸入電影名稱"
+            />
             <button
-              onClick={() => addToWatchlist(movie)}
-              className="text-sm text-blue-500 hover:underline mt-2"
-              disabled={isInWatchlist(movie.id)}
+              className="bg-blue-500 text-white px-4 py-2 rounded shadow"
+              onClick={handleSearch}
             >
-              {isInWatchlist(movie.id) ? '已加入待看清單' : '加入待看清單'}
+              搜尋
             </button>
-          </li>
-        ))}
-      </ul>
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700">排序：</label>
+            <select
+              value={sortOption}
+              onChange={(e) =>
+                setSortOption(e.target.value as 'date' | 'title' | 'rating')
+              }
+              className="border px-2 py-1 rounded text-sm shadow-sm"
+            >
+              <option value="date">上映日</option>
+              <option value="title">名稱</option>
+              <option value="rating">評分</option>
+            </select>
+          </div>
+        </div>
 
-      {/* 無限載入觸發器 */}
-      {hasMore && <div ref={ref} className="h-10" />}
+        {/* 錯誤與載入 */}
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        {isLoading && <div className="text-gray-500 mb-4">載入中...</div>}
+
+        {/* 電影列表 */}
+        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {results.map((movie) => (
+            <li
+              key={movie.id}
+              className="bg-white border rounded-lg p-2 shadow hover:shadow-md transition duration-200 flex flex-col items-center text-center"
+            >
+              <Link to={`/movie/${movie.id}`} className="w-full h-full">
+                {movie.poster_path ? (
+                  <img
+                    className="w-full h-48 object-cover rounded-md mb-2"
+                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                ) : (
+                  <div className="w-full h-48 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-400 text-sm">
+                    無圖片
+                  </div>
+                )}
+                <h2 className="font-semibold text-sm truncate">{movie.title}</h2>
+                <p className="text-xs text-gray-500">{movie.release_date}</p>
+              </Link>
+
+              <button
+                onClick={() => addToWatchlist(movie)}
+                className="text-xs text-blue-500 hover:underline mt-1"
+                disabled={isInWatchlist(movie.id)}
+              >
+                {isInWatchlist(movie.id) ? '已加入待看清單' : '加入待看清單'}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        {/* 無限載入觸發器 */}
+        {hasMore && <div ref={ref} className="h-10" />}
+      </div>
     </div>
   );
+
 
 }
 
