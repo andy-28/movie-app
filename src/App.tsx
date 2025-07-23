@@ -88,15 +88,22 @@ function App() {
     <div className="min-h-screen">
       <nav className="shadow-sm p-4 flex justify-between items-center container mx-auto mb-6">
         <h1 className="text-xl font-bold text-blue-600">電影搜尋</h1>
-        <div className="flex items-center border px-3 py-1 shadow-sm w-full max-w-sm">
+        <div className="flex w-full md:w-2/3 gap-2 items-center">
           <input
-            type="text"
+            className="border px-4 py-2 rounded w-full shadow-sm"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="請輸入電影名稱"
-            className="flex-grow outline-none px-2 text-sm text-white-700"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch();
+              }
+            }}
+            placeholder="輸入電影名稱"
           />
-          <button onClick={handleSearch} className="p-1 hover:opacity-80">
+          <button
+            onClick={handleSearch}
+            className="p-2 rounded hover:bg-blue-100 flex items-center justify-center"
+          >
             <img
               src="https://i2.bahamut.com.tw/anime/search-icon.svg"
               alt="搜尋"
@@ -104,6 +111,7 @@ function App() {
             />
           </button>
         </div>
+
         <div className="flex items-center gap-4">
           <Link to="/watchlist" className="text-blue-500 hover:underline text-md">
             待看清單
