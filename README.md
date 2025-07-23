@@ -1,69 +1,33 @@
-# React + TypeScript + Vite
+# 🎬 Movie Watchlist App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一個使用 React + TypeScript + Tailwind CSS 打造的電影搜尋平台，整合 TMDB API，支援搜尋、無限滾動、排序、收藏清單與抽電影功能。具備良好的 DX 設計與易於擴充的架構。
 
-Currently, two official plugins are available:
+## ✨ 功能 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 **電影搜尋**：透過 TMDB API 搜尋全球電影
+- ♾️ **無限滾動**：自動載入更多結果
+- 🧩 **前端排序**：依照名稱、上映日、評分排序
+- 📥 **加入待看清單**：可收藏電影，儲存於 localStorage
+- 🎲 **Watch Lottery**：隨機從待看清單中抽選電影
+- 🧑‍💻 **美觀 UI**：使用 Tailwind CSS 打造響應式設計
+- 🚀 **即時部署**：支援 Vercel 一鍵部署
+- 🧪 **錯誤處理**：包含錯誤提示與 Loading 狀態
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🖥️ 技術棧 Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| 技術         | 用途                     |
+|--------------|--------------------------|
+| React        | 前端框架                 |
+| TypeScript   | 型別安全開發             |
+| Tailwind CSS | UI 風格與樣式管理       |
+| Vite         | 快速開發環境             |
+| React Router | 多頁導覽與路由管理       |
+| Framer Motion| 抽電影動畫效果（選配）   |
+| localStorage | 用戶資料本地儲存         |
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧱 專案架構
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
